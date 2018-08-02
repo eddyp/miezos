@@ -1,0 +1,6 @@
+[package]
+name = "miezos"
+version = "0.1.0"
+authors = ["Eddy Petrișor <eddy.petrisor@gmail.com>"]
+
+[dependencies]
