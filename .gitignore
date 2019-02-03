@@ -2,3 +2,8 @@
 *~
 *.map
 *.elf
+*.orig
+target/
+*.map
+.idea/
+*.iml
