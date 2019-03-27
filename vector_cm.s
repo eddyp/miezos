@@ -92,14 +92,20 @@ systick_handler:
 irq_handler:
 	b .
 
+.ltorg
+
+
 .align 10
-.section stack
+.section .stack_usr
 .skip 1020, 0x55
 .global __eo_process_stack
 __eo_process_stack:
 
+// skip the gap until the stack
+.section .empty, "e"
 
 .org 0x20001c00
+.section .stack
 .skip 1020,0xaa
 .global _initsp
 _initsp:
