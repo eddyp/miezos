@@ -77,7 +77,7 @@ reset_handler:
 	/*
 	execute next instruction with new stack - see end of 2.1.3 note in
 	ARM DUI 0646B - cortex M7
-	ARM DUI 0552A - cortex M4
+	ARM DUI 0552A - cortex M3
 	ARM DUI 0662B - cortex M0+
 	*/
 	isb
