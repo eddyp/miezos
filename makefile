@@ -8,7 +8,13 @@ ifeq ($(CC_TYPE),clang)
 CC := clang --target=$(TARGET)
 endif
 
+CC_OPT :=
+ifneq ($(MIEZOS_DEBUG),no)
 CC_OPT := -g
+endif
+ifeq ($(MIEZOS_OPTMZ),s)
+CC_OPT += -Os -nostdlib
+endif
 LD_OPT = -nostartfiles -Wl,-Map,$(subst .elf,.map,$@)
 
 PRJ := miezos
