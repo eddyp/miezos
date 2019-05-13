@@ -99,7 +99,7 @@ irq_handler:
 __eo_process_stack:
 
 
-.org 0x20001c00
+.org 0x00021c00
 .skip 1020,0xaa
 .global _initsp
 _initsp:
