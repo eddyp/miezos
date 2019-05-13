@@ -28,3 +28,7 @@ $(ELF):
 debug-qemu:
 	qemu-system-arm -machine lm3s6965evb -S -gdb tcp::1234 -kernel $(ELF) &
 	gdb-multiarch -x $(PRJ).gdbinit $(ELF)
+
+.PHONY: clean
+clean:
+	rm -f *.o $(ELF)
