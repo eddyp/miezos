@@ -1,0 +1,29 @@
+TARGET := arm-none-eabi
+CC_TYPE := gcc
+
+ifeq ($(CC_TYPE),gcc)
+CC := $(TARGET)-gcc
+endif
+ifeq ($(CC_TYPE),clang)
+CC := clang --target=$(TARGET)
+endif
+
+CC_OPT :=
+#CC_OPT += -g
+CC_OPT += -Os -nostdlib -mthumb
+LD_OPT = -nostartfiles -Wl,-Map,$(subst .elf,.map,$@)
+
+PRJ := miezos
+ELF := $(PRJ).elf
+
+.PHONY: debug-qemu
+
+$(ELF): vector_cm.o
+	$(CC) $(CC_OPT) $(LD_OPT) $^ -o $@
+
+vector_cm.o: vector_cm.s
+	$(CC) -c $(CC_OPT) $^ -o $@
+
+debug-qemu:
+	qemu-system-arm -machine lm3s6965evb -S -gdb tcp::1234 -kernel $(ELF) &
+	gdb-multiarch -x $(PRJ).gdbinit $(ELF)
